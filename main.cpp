@@ -472,7 +472,7 @@ void uncompressFile(std::string fileName) {
         std::bitset<8> bitsValues(tempValue);
         //std::cout << bitsValues << " -> ";
 
-        for (int i = bitsValues.size() - 1; i >= 0; --i) {
+        for (int i = bitsValues.size() - 1; i >= 0 && numberOfCharacters < alphabet.dataSize; --i) {
             //std::cout << bitsValues.test(i);
             if (bitsValues.test(i)) {
                 //std::cout << '1';
