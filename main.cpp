@@ -38,7 +38,7 @@ auto cmp = [](std::pair<unsigned char, unsigned long int> const &a, std::pair<un
 };
 
 vector<long int> computeAlphabet(std::string fileName) {
-    vector<long int> alphabet(255);
+    vector<long int> alphabet(256);
     unsigned char temp;
     ifstream inputFile;
 
@@ -84,7 +84,7 @@ Alphabet extractAlphabet(vector<long int> inputAlphabet) {
 void displayAlphabet(AlphabetList alphabet) {
     printf("Other alphabet\n");
     for (Symbol &x: alphabet) {
-        printf("%d %d \n", x.first, x.second);
+        printf("%d,%d\n", x.first, x.second);
 
     }
 }
@@ -246,7 +246,7 @@ void writeAuxiliaryData(std::string fileName, AlphabetList alphabet) {
         exit(-1);
     }
 
-    dataSize = alphabet.size();
+    dataSize = alphabet.size() - 1;
 
 
     outputFile.unsetf(ios_base::skipws);
@@ -283,8 +283,9 @@ Alphabet readAuxiliaryData(std::string fileName) {
     AlphabetList tempAlphabet;
     Alphabet alphabet;
     AlphabetList::iterator it;
-    unsigned char index, dataSize, noOfApp1, noOfApp2, noOfApp3, noOfApp4, character;
+    unsigned char noOfApp1, noOfApp2, noOfApp3, noOfApp4, character, dataSize;
     Symbol *tempSymbol;
+    int index, dataSizeI;
     unsigned long long int totalCharacters = 0, alphabetSize = 0;
 
     inputFile.open(fileName.c_str(), ios::binary);
@@ -297,7 +298,9 @@ Alphabet readAuxiliaryData(std::string fileName) {
     inputFile.unsetf(ios_base::skipws);
     it = tempAlphabet.begin();
     inputFile >> dataSize;
-    for (index = 0; index < dataSize; index++) {
+    dataSizeI = dataSize;
+    dataSizeI++;
+    for (index = 0; index < dataSizeI; index++) {
 
         inputFile >> character >> noOfApp1 >> noOfApp2 >> noOfApp3 >> noOfApp4;
 
